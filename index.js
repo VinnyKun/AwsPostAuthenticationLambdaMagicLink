@@ -7,10 +7,10 @@ exports.handler = async (event, context, callback) => {
   const email = user.email;
   const url = process.env.urlToUse; // change this variable via AWS lambda console
 
-  // logic to add 3 minutes of exp to the JWT token
+  // logic to add 24 hours of exp to the JWT token
   const oldDateObj = new Date();
   const newDateObj = new Date();
-  const exp = (newDateObj.setTime(oldDateObj.getTime() + (3 * 60 * 1000))) / 1000;
+  const exp = (newDateObj.setTime(oldDateObj.getTime() + (24 * 60 * 60* 1000))) / 1000;
 
   const userWithAuthExpiry = {
     ...user,
