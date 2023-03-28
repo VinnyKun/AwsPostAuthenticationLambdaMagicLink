@@ -5,7 +5,7 @@ AWS.config.update({region: 'us-east-1'});
 exports.handler = async (event, context, callback) => {
   const user = event.request.userAttributes;
   const email = user.email;
-  const url = 'http://localhost:5173'; // change this variable for production
+  const url = process.env.urlToUse; // change this variable via AWS lambda console
 
   // logic to add 3 minutes of exp to the JWT token
   const oldDateObj = new Date();
@@ -43,7 +43,7 @@ exports.handler = async (event, context, callback) => {
         Data: 'Your Magic Link to RockCat!'
       }
     },
-    Source: 'vineethkunnathsg@gmail.com'
+    Source: 'mail@rockcat.dev'
   };
 
   // create new SES object and send email
